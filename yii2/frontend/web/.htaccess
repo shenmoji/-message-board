@@ -1,0 +1,12 @@
+Options +FollowSymLinks
+#开启重写引擎
+RewriteEngine On
+
+#重写条件(RewriteCond)相当于PHP的if判断
+#请求的不是目录，则交给下述重写规则处理
+RewriteCond %{REQUEST_FILENAME} !-d
+#请求的不是文件，则交给下述重写规则处理，如：xxx.png
+RewriteCond %{REQUEST_FILENAME} !-f
+#重写规则（RewriteRule）
+#只要输入网址/xxxx 则匹配index.php?r=xxxx
+RewriteRule ^(.*)$ index.php?r=$1

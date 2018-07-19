@@ -1,0 +1,11 @@
+{$data}
+<br>
+ <if condition="$data1['sex'] eq '男'">
+        强大
+    <else />
+        相对弱小需要保护
+    </if>
+<hr />
+<volist name="data2" id="data2">
+	{$data2.sex}:{$data2.name}
+	<br/></volist>
