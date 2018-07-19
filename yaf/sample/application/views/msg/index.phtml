@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="telephone=no, address=no" name="format-detection">
+	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <title>微留言演示案例</title>
+    <link rel="stylesheet" type="text/css" href="/sample/application/public/message/msg.css" media="all" />
+	<script language="javascript" type="text/javascript" src="./My97DatePicker/WdatePicker.js"></script>
+</head>
+<body id="message" onselectstart="return true;" ondragstart="return false;">
+	<div class="container">
+	  	<div class="qiandaobanner">
+		  	<a href="./message">
+		  		<img src="/sample/application/public/message/wall.jpg" style="width:100%;" />
+		  	</a>
+	  	</div>
+		<div class="cardexplain">
+			<div class="window" id="windowcenter">
+				<div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+				<div class="content">
+					<div id="txt"></div>
+				</div>
+			</div>
+			<input type="text" class="time1" onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+			<input type="text" class="time2" onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+			<a href="javascript:;" id="java">搜索</a>
+  			<div class="history">
+				<div class="history-date">
+					<ul>
+						<a><h2 class="first first1" style="position: relative;">点击留言</h2></a>
+						<li class="nob  mb">
+							<div class="beizhu">留言审核通过后才会显示在留言墙上！</div>
+						</li>
+
+						<?php foreach($msgs as $msg) : ?>
+						<li class="green bounceInDown javasec" >
+							<h3>
+								<img src='/sample/application/public/message/logo100x100.jpg'> 
+								<?= $msg['uname'] ?>
+								
+								<span><?= date('Y-m-d',$msg['created_at']) ?></span>
+								<div class="clr"></div>
+							</h3>
+							<dl>
+								<dt class="hfinfo"><?= $msg['content'] ?></dt>
+							</dl>
+						</li>
+						<?php endforeach; ?>
+
+						<li class="green bounceInDown nob ly2" style="display:none;">
+							<form action="" method="post" class="form1">
+							<dl>
+								<dt>
+									<input name="uname" type="text" class="px" id="uname" value="" placeholder="请输入您的昵称">
+									</dt>
+								<dt>
+									<textarea name="content" class="pxtextarea" style=" height:60px;" id="content" placeholder="请输入留言内容"></textarea>
+								</dt>
+								<dt>
+									<a class="submit" href="javascript:void(0);">提交留言</a>
+								</dt>
+							</dl>
+							</form>
+						</li>
+						<a><h2 class="first first2" style="position: relative;">点击留言</h2></a>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/sample/application/public/message/jquery.js"></script>
+	<script type="text/javascript"> 
+		$(function(){
+			//留言表单显示切换
+			$(".first1").click(function(){
+				$(".ly1").slideToggle();
+			});
+			$(".first2").click(function(){
+				$(".ly2").slideToggle();
+			});
+
+			//点击提交留言a标签，则提交表单
+			$('.submit').click(function(){
+				//判断用户名和密码不能为空
+				var uname = $('#uname').val();
+				var content = $('#content').val();
+				if (uname == '' || content == '') {
+					alert('请输入昵称或留言内容');
+					return;
+				}
+				//提交表单
+				$('.form1').submit();
+			});
+		});
+	</script> 
+</body>
+<script>
+	// $("#java").click(function(){
+ //        var time1 = $(".time1").val();
+ //        var time2 = $(".time2").val();
+ //        $.get("{:U('msg/seo')}",{"time1":time1,"time2":time2},function(json){
+ //            console(json);
+	// 		if(json.status == 200){
+ //                alert(1);
+	// 		}else{
+	// 		    alert("未找到相关记录");
+	// 		}
+	// 	},'json');
+	// });
+</script>
+
+</html>
+
+					
+						
+							
+								
+								
+								
+								
+								
+							
+							
+								
+							
+						
+						
